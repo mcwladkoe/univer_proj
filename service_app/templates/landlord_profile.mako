@@ -69,6 +69,62 @@
             % endfor
             </table>
         </div>
+        <div>
+            <b>Pending Orders</b>:<br/>
+            <table class="table table-striped table-bordered">
+                <head>
+                    <tr>
+                        <td>Address</td>
+                        <td>Status</td>
+                        <td>Total</td>
+                        <td>Arrival Date</td>
+                        <td>Amount of Days</td>
+                        <td>Number of Persons</td>
+                        <td>Comment</td>
+                        <td>Action</td>
+                    </tr>
+                </head>
+            % for order in pending_orders:
+                <tr>
+                    <td>${order.landlord_address.address}</td>
+                    <td>${'Pending' if not order.status else 'Confirmed'}</td>
+                    <td>${order.total}</td>
+                    <td>${order.arrival_date}</td>
+                    <td>${order.amount_of_days}</td>
+                    <td>${order.number_of_persons}</td>
+                    <td>${order.comment}</td>
+                    <td><a class="btn btn-danger" href="${request.route_path('confirm_order', uid=order.uid)}">Confirm</a></td>
+                </tr>
+            % endfor
+            </table>
+        </div>
+        <div>
+            <b>Orders</b>:<br/>
+            <table class="table table-striped table-bordered">
+                <head>
+                    <tr>
+                        <td>Address</td>
+                        <td>Status</td>
+                        <td>Total</td>
+                        <td>Arrival Date</td>
+                        <td>Amount of Days</td>
+                        <td>Number of Persons</td>
+                        <td>Comment</td>
+                    </tr>
+                </head>
+            % for order in orders:
+                <tr>
+                    <td>${order.landlord_address.address}</td>
+                    <td>${'Pending' if not order.status else 'Confirmed'}</td>
+                    <td>${order.total}</td>
+                    <td>${order.arrival_date}</td>
+                    <td>${order.amount_of_days}</td>
+                    <td>${order.number_of_persons}</td>
+                    <td>${order.comment}</td>
+                </tr>
+            % endfor
+            </table>
+        </div>
         <a href="${request.route_path('landlord_edit')}" class="btn btn-warning">Edit</a>
         <a href="${request.route_path('landlord_logout')}" class="btn btn-primary">Log Out</a>
         <a href="${request.route_path('landlord_delete')}" class="btn btn-danger">Delete</a>

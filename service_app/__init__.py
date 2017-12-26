@@ -51,6 +51,8 @@ def main(global_config, **settings):
     config.add_route('student_view_orders', '/student/{uid}/orders')
 
     config.add_route('address_search', '/search')
+    config.add_route('place_order', '/address/{uid}/order/place')
+    config.add_route('confirm_order', 'order/{uid}/confirm')
 
     # config.add_route('login', '/')
     # config.add_route('login', '/login')

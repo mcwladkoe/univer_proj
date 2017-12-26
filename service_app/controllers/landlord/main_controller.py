@@ -8,7 +8,7 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.response import Response
 from pyramid.view import view_config
 
-from ...models import DBSession, Landlord
+from ...models import DBSession, Landlord, LandlordAddress, Order
 
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
@@ -95,7 +95,14 @@ class LandLords(object):
             response = HTTPFound(self.request.route_url('home'))
             response.delete_cookie('landlord_login')
             return response
-        return dict(landlord=landlord)
+        orders = DBSession.query(Order).join(LandlordAddress).join(Landlord)\
+            .filter(Landlord.login == landlord_login)
+        pending_orders = orders.filter(Order.status == 0)
+        return dict(
+            landlord=landlord,
+            orders=orders,
+            pending_orders=pending_orders,
+        )
 
 
     @view_config(route_name='landlord_edit',

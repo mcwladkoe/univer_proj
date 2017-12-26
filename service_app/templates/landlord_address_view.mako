@@ -57,6 +57,17 @@
         <div>Price: ${address.price}</div>
         <div>Special Price: ${address.special_price}(>${address.special_price_min_num} student(-s))</div>
     </div>
+    % if request.cookies.get('student_login'):
+        <form action="${request.route_path('place_order', uid=address.uid)}" method="post">
+            Amount of days: <input type="number" name="amount_of_days" value="${request.params.get('amount_of_days', 0)}">
+            Arrival Day: <input type="number" name="datetime" value="${request.params.get('arrival_date', 0)}">
+            Number of persons: <input type="number" name="number_of_persons" value="${request.params.get('number_of_persons', 0)}">
+            Comment: <input type="number" name="comment" value="${request.params.get('comment', 0)}">
+            <button type="submit">Submit</button>
+        </form>
+    % else:
+        Login as student to place order
+    % endif
     <a class="btn btn-default" href="${request.route_path('address_search')}">
         Back
     </a>
