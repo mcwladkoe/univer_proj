@@ -1,0 +1,6 @@
+service_app.egg-info/PKG-INFO
+service_app.egg-info/SOURCES.txt
+service_app.egg-info/dependency_links.txt
+service_app.egg-info/entry_points.txt
+service_app.egg-info/requires.txt
+service_app.egg-info/top_level.txt

@@ -1,0 +1,8 @@
+pyramid
+pyramid_mako
+deform
+sqlalchemy
+pyramid_tm
+zope.sqlalchemy
+pytz
+bcrypt
