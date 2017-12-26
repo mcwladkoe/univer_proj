@@ -26,7 +26,7 @@
         NO RESULTS FOR THIS QUERY
     % endif
     % for i in results:
-        <div style="border: 1px solid;border-color: black; margin:2px 1px;" onlick="location.replace('${request.route_path('landlord_address_view', uid=i.uid)}');">
+        <div style="border: 1px solid;border-color: black; margin:2px 1px;" onclick="window.open('${request.route_path('landlord_address_view', uid=i.uid)}');">
             <div>Name: ${i.landlord.full_name}
             % if i.has_dinner:
                 <span class='badge badge-info'>Dinner</span>

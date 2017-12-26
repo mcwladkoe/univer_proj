@@ -47,6 +47,7 @@
                         <td>Price</td>
                         <td>Special Price</td>
                         <td>Special Price Minimum Order Number</td>
+                        <td>Actions</td>
                     </tr>
                 </head>
             % for address in landlord.addresses:
@@ -60,6 +61,10 @@
                     <td>${address.price}</td>
                     <td>${address.special_price}</td>
                     <td>${address.special_price_min_num}</td>
+                    <td width="170px;">
+                        <a class="btn btn-sm btn-danger" href="${request.route_path('landlord_address_delete', uid=address.uid)}">Delete</a>
+                        <a class="btn btn-sm btn-success" href="${request.route_path('landlord_address_edit', uid=address.uid)}">Edit</a>
+                    </td>
                 </tr>
             % endfor
             </table>
