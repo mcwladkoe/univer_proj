@@ -54,15 +54,42 @@
         <div>Address: ${address.address}</div>
         <div>Phone: ${address.landlord.phone_number}</div>
         <div>Additional: ${address.additional}</div>
-        <div>Price: ${address.price}</div>
-        <div>Special Price: ${address.special_price}(>${address.special_price_min_num} student(-s))</div>
+        <div>Price: $ ${address.price}</div>
+        <div>Special Price: $ ${address.special_price}(>${address.special_price_min_num} student(-s))</div>
     </div>
     % if request.cookies.get('student_login'):
         <form action="${request.route_path('place_order', uid=address.uid)}" method="post">
             Amount of days: <input type="number" name="amount_of_days" value="${request.params.get('amount_of_days', 0)}">
-            Arrival Day: <input type="number" name="datetime" value="${request.params.get('arrival_date', 0)}">
+            Arrival Day: <input type="datetime" name="arrival_day" value="${request.params.get('arrival_date', 0)}">
             Number of persons: <input type="number" name="number_of_persons" value="${request.params.get('number_of_persons', 0)}">
-            Comment: <input type="number" name="comment" value="${request.params.get('comment', 0)}">
+            Comment: <input type="text" name="comment" value="${request.params.get('comment', 0)}"><br/>
+            <input type="number" name="total" value="${request.params.get('total', 0)}" class="hidden">
+            Total: $<span id="total-label">0</span>
+            <br/>
+            <script>
+                var price = ${address.price};
+                var special_price = ${address.special_price};
+                var special_price_n = ${address.special_price_min_num};
+                var total = 0;
+                $("[name=amount_of_days]").on('change', function(ev) {
+                    if ($("[name=number_of_persons]").val()==special_price_n) {
+                        total = $("[name=amount_of_days]").val()*$("[name=number_of_persons]").val()*special_price;
+                    } else {
+                        total = $("[name=amount_of_days]").val()*$("[name=number_of_persons]").val()*price;
+                    }
+                    $('#total-label').html(total);
+                    $("[name=total]").val(total);
+                });
+                $("[name=number_of_persons]").on('change', function(ev) {
+                    if ($("[name=number_of_persons]").val()==special_price_n) {
+                        total = $("[name=amount_of_days]").val()*$("[name=number_of_persons]").val()*special_price;
+                    } else {
+                        total = $("[name=amount_of_days]").val()*$("[name=number_of_persons]").val()*price;
+                    }
+                    $('#total-label').html(total);
+                    $("[name=total]").val(total);
+                });
+            </script>
             <button type="submit">Submit</button>
         </form>
     % else:

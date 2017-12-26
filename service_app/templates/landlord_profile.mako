@@ -88,7 +88,7 @@
                 <tr>
                     <td>${order.landlord_address.address}</td>
                     <td>${'Pending' if not order.status else 'Confirmed'}</td>
-                    <td>${order.total}</td>
+                    <td>$ ${order.total}</td>
                     <td>${order.arrival_date}</td>
                     <td>${order.amount_of_days}</td>
                     <td>${order.number_of_persons}</td>
@@ -116,7 +116,7 @@
                 <tr>
                     <td>${order.landlord_address.address}</td>
                     <td>${'Pending' if not order.status else 'Confirmed'}</td>
-                    <td>${order.total}</td>
+                    <td>$ ${order.total}</td>
                     <td>${order.arrival_date}</td>
                     <td>${order.amount_of_days}</td>
                     <td>${order.number_of_persons}</td>
