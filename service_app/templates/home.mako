@@ -30,7 +30,7 @@
     </center>
     <br/>
     <form action="${request.route_path('address_search')}" method="post">
-        <center>Search Address: <input type="text" name="q"></center>
+        <center>Search: <input type="text" name="q"></center>
     </form>
 </body>
 </html>
