@@ -26,7 +26,7 @@ def address_search(request):
 
     query = DBSession.query(LandlordAddress)
     if request.params.get('q'):
-        query = query.filet(LandlordAddress.address.contains(request.params['q']))
+        query = query.filter(LandlordAddress.address.contains(request.params['q']))
 
     return dict(
         results = query.all(),

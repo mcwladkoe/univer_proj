@@ -19,9 +19,12 @@
     <center><h1>Search!</h1></center>
     <center>
         <form action="#" method="post">
-            <input type="text" name="q">
+            <input type="text" name="q" value="${request.params.get('q', '')}">
         </form>
     </center>
+    % if len(results) == 0:
+        NO RESULTS FOR THIS QUERY
+    % endif
     % for i in results:
         <div style="border: 1px solid;border-color: black; margin:2px 1px;" onlick="location.replace('${request.route_path('landlord_address_view', uid=i.uid)}');">
             <div>Name: ${i.landlord.full_name}

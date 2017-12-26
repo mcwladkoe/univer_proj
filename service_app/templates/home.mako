@@ -28,5 +28,9 @@
             <a class="btn btn-success" href="${request.route_path('student_login')}"}>Log in as Student</a>
         % endif
     </center>
+    <br/>
+    <form action="${request.route_path('address_search')}" method="post">
+        <center>Search Address: <input type="text" name="q"></center>
+    </form>
 </body>
 </html>
